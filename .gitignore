@@ -1,4 +1,5 @@
 venv
+src/database.sql3
 
 *.py[cod]
 
