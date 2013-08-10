@@ -1,0 +1,4 @@
+django
+ipython
+mysql-python
+mock
