@@ -6,7 +6,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'seamless.views.home', name='home'),
+    url(r'^$', 'web.views.home', name='home'),
+    url(r'^add/$', 'web.views.add', name='add'),
+    url(r'^show/(?P<uuid>[0-9a-f\-]+)/$', 'web.views.show', name='show'),
     # url(r'^seamless/', include('seamless.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -14,4 +16,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    
 )

@@ -7,3 +7,4 @@ DATABASES = {
     }
 }
 
+ALLOWED_HOSTS.append('testserver')

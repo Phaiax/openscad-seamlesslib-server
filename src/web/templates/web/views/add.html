@@ -1,0 +1,9 @@
+{% extends "web/base_layout.html" %}
+
+{% block content %}
+<form method="POST">
+{{ newmoduleform.as_p }}
+{% csrf_token %}
+<input type="submit" name="addmodule" value="Add">
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "web/base_layout.html" %}
+
+{% block content %}
+    <p>Title: {{ module.title }} </p>
+    <p>uniquename: {{ module.uniquename }} </p>
+    <p>Author: {{ module.author }} ({{ module.author }})</p>
+    <p>Name: {{ module.modulename }} </p>
+    <p>Description: {{ module.description }} </p>
+    <p>Sourcecode: {{ module.sourcecode }} </p>
+    <p>Documentation: {{ module.documentation }} </p>
+    <p>Tags:  </p>
+    <p>Version: {{ module.version }} </p>
+    <p>Rating: {{ module.average_rating }} ({{ module.number_of_ratings }} votes)
+{% endblock %}
