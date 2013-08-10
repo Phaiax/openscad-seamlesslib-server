@@ -2,3 +2,4 @@ django
 ipython
 mysql-python
 mock
+South
