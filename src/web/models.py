@@ -1,9 +1,13 @@
-from django.db import models
 from django.contrib import admin
+from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
+from django.core.validators import RegexValidator
+from django.db import models
 import uuid
 
 class Tag(models.Model):
     name = models.CharField(max_length = 30)
+
 
 # Create your models here.
 class Module(models.Model):
@@ -18,7 +22,7 @@ class Module(models.Model):
     documentation = models.TextField()
     tags = models.ManyToManyField(Tag, related_name="tagged_modules")
     version = models.IntegerField(default = 1)
-    modulename = models.CharField(max_length = 40)
+    modulename = models.CharField(max_length = 40, validators=[RegexValidator(r"^[a-zA-Z]{1}[a-zA-Z0-9]*$")])
     auth_code = models.CharField(max_length = 36)
     average_rating = models.FloatField(default = 0)
     number_of_ratings = models.IntegerField(default = 0)
@@ -39,7 +43,6 @@ class Module(models.Model):
                     random_tail = uuid.uuid4().__str__()
                 except Module.DoesNotExist:
                     break
-            
         super(Module, self).save(*args, **kwargs)
 
     def generate_uniquename(self, tail = ''):
@@ -50,3 +53,11 @@ class Module(models.Model):
         # max 100 chars: 1 + 6 + 1 + 40 + 2 + 10 + 5 = 65
         # 012345678901234567890123456789012345678901234567890123456789012345
         return "~%s-%s-v%d%s" % (self.author_acronym, self.modulename, self.version, tail) 
+
+    def clean(self):
+        super(Module, self).clean()
+        
+    def get_absolute_url(self):
+        return reverse('show', kwargs={'uuid': self.guid})
+        
+        

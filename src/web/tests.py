@@ -5,16 +5,21 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
+from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.test import TestCase
+from django.test.client import Client
+from web.forms import ModuleForm
 from web.models import Module
 
 example_module = {'title' : "A cylinder",
                   'modulename' : "cylinder", 
                        'author' : "Phaiax", 
                        'author_acronym' : "Px",
-                       'sourcecode' : "module c() { }", 
-                       'documentation' : "call c()", 
+                       'sourcecode' : "module cylinder() { }", 
+                       'documentation' : "call cylinder()", 
+                       'description' : "This makes a cylinder",
                        'version' : 1}
 
 class SimpleTest(TestCase):
@@ -92,3 +97,57 @@ class SimpleTest(TestCase):
         M2.save()
         self.assertNotEqual(M2.uniquename, M.uniquename)
         pass
+    
+    def test_form_validates_that_sourcecode_contains_modulename(self):
+        invalid_module = example_module.copy()
+        invalid_module['modulename'] = 'baseball'
+        M = ModuleForm(invalid_module)
+        self.assertFalse(M.is_valid())
+        self.assertTrue('sourcecode' in M.errors)
+        
+    def test_module_validates_that_modulename_is_valid(self):
+        invalid_module = example_module.copy()
+        invalid_module['modulename'] = '1cylinder'
+        M = ModuleForm(invalid_module)
+        self.assertFalse(M.is_valid())
+        self.assertTrue('modulename' in M.errors)
+        invalid_module['modulename'] = 'cylin der'
+        M = ModuleForm(invalid_module)
+        self.assertFalse(M.is_valid())
+        self.assertTrue('modulename' in M.errors)
+        invalid_module['modulename'] = 'calinger%'
+        M = ModuleForm(invalid_module)        
+        self.assertFalse(M.is_valid())
+        self.assertTrue('modulename' in M.errors)
+        invalid_module['modulename'] = 'cylinder'
+        M = ModuleForm(invalid_module)        
+        self.assertTrue(M.is_valid())
+        self.assertFalse('modulename' in M.errors)
+        
+    def test_home_displays_list(self):
+        resp = self.client.get("/")
+        self.assertTrue('top_rated_modules' in resp.context)
+        self.assertTrue('last_added_modules' in resp.context)
+        
+    def test_home_displays_last_10_modules(self):
+        for i in range(0, 20):
+            mod = example_module.copy()
+            mod['title'] = "rated: %d " % i
+            M = ModuleForm(mod).save()
+            M.average_rating = i
+            M.save()
+        for i in range(0, 20):
+            mod = example_module.copy()
+            mod['title'] = "latest: %d " % i
+            ModuleForm(mod).save()
+        resp = self.client.get("/")
+        self.assertContains(resp, "latest: 10 ")
+        self.assertContains(resp, "latest: 19 ")
+        self.assertNotContains(resp, "latest: 1 ")
+        self.assertContains(resp, "rated: 19 ")
+        self.assertNotContains(resp, "rated: 1 ")
+        
+    def test_model_generates_url(self):
+        M = ModuleForm(example_module).save()
+        resp = self.client.get(M.get_absolute_url())
+        self.assertEqual(resp.context['module'].guid, M.guid)

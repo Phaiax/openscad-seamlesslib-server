@@ -2,4 +2,22 @@
 
 {% block content %}
     <a href="/add/">Add new Module</a>
+    
+    <h1>Lastest entries</h1>
+    <ul>
+      {% for m in last_added_modules %}
+        <li>
+          <div><a href="{{ m.get_absolute_url }}">{{ m.title }} __</a> </div>
+        </li>
+      {% endfor %}
+    </ul>
+    
+    <h1>Top rated entries</h1>
+    <ul>
+      {% for m in top_rated_modules %}
+        <li>
+          <div><a href="{{ m.get_absolute_url }}">{{ m.title }}_</a> !</div>
+        </li>
+      {% endfor %}
+    </ul>
 {% endblock %}

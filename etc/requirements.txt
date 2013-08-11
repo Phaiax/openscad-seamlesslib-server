@@ -3,3 +3,4 @@ ipython
 mysql-python
 mock
 South
+python-dateutil

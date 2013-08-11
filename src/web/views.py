@@ -6,7 +6,10 @@ from django.core import urlresolvers
 from web.models import Module
 
 def home(request):
-    return render(request, 'web/views/index.html')
+    top_rated_modules = Module.objects.order_by('-average_rating')[0:10]
+    last_added_modules = Module.objects.order_by('-created')[0:10]
+    return render(request, 'web/views/index.html', {'top_rated_modules' : top_rated_modules,
+                                                    'last_added_modules' : last_added_modules})
 
 def add(request):
     if request.method == "POST":

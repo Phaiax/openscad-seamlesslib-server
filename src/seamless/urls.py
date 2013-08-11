@@ -9,6 +9,9 @@ urlpatterns = patterns('',
     url(r'^$', 'web.views.home', name='home'),
     url(r'^add/$', 'web.views.add', name='add'),
     url(r'^show/(?P<uuid>[0-9a-f\-]+)/$', 'web.views.show', name='show'),
+    
+    url(r'^api/get-by-uniquename/(?P<uniquename>[0-9a-z\-~A-Z]+)/$', 'api.views.get_by_uniquename', name='get_by_uniquename'),
+    
     # url(r'^seamless/', include('seamless.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
