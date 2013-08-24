@@ -1,0 +1,36 @@
+
+
+/* colors: 
+# green: 88A825
+# lila: 35203B
+# purple:  911146
+# red-orange: CF4A30
+# orange: ED8C2B
+*/
+
+body {
+  font-family: Helvetica;
+  padding: 0 10px 0 10px;
+  width: 90%;
+}
+
+.header {
+  padding: 20px 50px 20px 50px;
+  width: 100%;
+  background-color: #ED8C2B;
+  
+}
+
+h1 {
+  color: #35203B;
+  font-size: 2em;
+}
+
+h2 {
+  color: #35203B;
+  font-weight: bold;  
+}
+
+.content {
+  margin: 20px 100px 100px 100px;  
+}

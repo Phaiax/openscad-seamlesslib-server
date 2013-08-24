@@ -1,8 +1,12 @@
 {% extends "web/base_layout.html" %}
 
+{% block header-additional %}
+  <span class="add-module">
+    <a href="/add/"><span>Add new Module</span></a>
+  </span>
+{% endblock %}
 {% block content %}
-    <a href="/add/">Add new Module</a>
-    
+  
     <h1>Lastest entries</h1>
     <ul>
       {% for m in last_added_modules %}
