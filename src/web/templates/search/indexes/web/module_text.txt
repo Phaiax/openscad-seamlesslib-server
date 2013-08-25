@@ -1,0 +1,8 @@
+{{ object.title }}
+{{ object.author }}
+{{ object.author_acronym }}
+{{ object.description }}
+{{ object.documentation }}
+{{ object.modulename }}
+{{ object.uniquename }}
+v{{ object.version }}
