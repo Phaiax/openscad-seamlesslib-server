@@ -124,11 +124,22 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'haystack',
     'south',
     
     'api',
     'web',
 )
+
+import os
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'xapian_backend.XapianEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'xapian_index'),
+    },
+}
+
+# https://github.com/notanumber/xapian-haystack
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

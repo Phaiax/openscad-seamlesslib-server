@@ -4,3 +4,5 @@ mysql-python
 mock
 South
 python-dateutil
+django-haystack
+xapian-haystack

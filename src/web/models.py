@@ -11,22 +11,22 @@ class Tag(models.Model):
 
 # Create your models here.
 class Module(models.Model):
-    guid = models.CharField(max_length = 36)
+    guid = models.CharField(db_index=True, max_length = 36)
     title = models.CharField(max_length = 200)
     description = models.TextField()
     author = models.CharField(max_length = 40)
     author_acronym = models.CharField(max_length = 6)
-    created = models.DateTimeField(auto_now_add = True)
+    created = models.DateTimeField(db_index=True, auto_now_add = True)
     finished = models.BooleanField(default = False)
     sourcecode = models.TextField()
     documentation = models.TextField()
-    tags = models.ManyToManyField(Tag, related_name="tagged_modules")
+    tags = models.ManyToManyField(Tag, blank=True, related_name="tagged_modules")
     version = models.IntegerField(default = 1)
     modulename = models.CharField(max_length = 40, validators=[RegexValidator(r"^[a-zA-Z]{1}[a-zA-Z0-9]*$")])
     auth_code = models.CharField(max_length = 36)
-    average_rating = models.FloatField(default = 0)
+    average_rating = models.FloatField(db_index=True, default = 0)
     number_of_ratings = models.IntegerField(default = 0)
-    uniquename = models.CharField(max_length = 100, default='')
+    uniquename = models.CharField(db_index=True, max_length = 100, default='')
      
     class Admin(admin.ModelAdmin):
         list_display = ['modulename', 'version', 'author_acronym', 'finished']
@@ -37,9 +37,14 @@ class Module(models.Model):
         if not self.finished:
             random_tail = ''
             while True:
-                self.uniquename = self.generate_uniquename(random_tail)
+                if random_tail == '' and self.pk:
+                    pass
+                else:
+                    self.uniquename = self.generate_uniquename(random_tail)
                 try:
-                    Module.objects.get(uniquename=self.uniquename)
+                    m = Module.objects.get(uniquename=self.uniquename)
+                    if m.pk == self.pk:
+                        raise Module.DoesNotExist
                     random_tail = uuid.uuid4().__str__()
                 except Module.DoesNotExist:
                     break
@@ -60,4 +65,6 @@ class Module(models.Model):
     def get_absolute_url(self):
         return reverse('show', kwargs={'uuid': self.guid})
         
+    def get_rating_url(self, rate):
+        return reverse('rate', kwargs={'uuid': self.guid, 'rating' : rate.__str__()})
         

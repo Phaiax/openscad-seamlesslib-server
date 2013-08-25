@@ -57,6 +57,27 @@ class PagesTest(TestCase):
         resp = self.client.get('/show/8b9a3b9e-277c-47b4-a7fa-cc5eb0905efu/')
         self.assertEqual(resp.status_code, 404)
         
+    def test_can_make_rating(self):
+        M = ModuleForm(example_module).save()
+        resp = self.client.get('/rate/%s/3/' % M.guid)
+        self.assertIsInstance(resp, HttpResponseRedirect)
+        self.assertIn(M.guid, resp['Location'])
+        M = Module.objects.get(guid = M.guid)
+        self.assertEqual(3, M.average_rating)
+        self.assertEqual(1, M.number_of_ratings)
+        resp = self.client.get('/rate/%s/7/' % M.guid)
+        M = Module.objects.get(guid = M.guid)
+        self.assertEqual(5, M.average_rating)
+        self.assertEqual(2, M.number_of_ratings)
+        resp = self.client.get('/rate/%s/11/' % M.guid)
+        M = Module.objects.get(guid = M.guid)
+        self.assertEqual(5, M.average_rating)
+        self.assertEqual(2, M.number_of_ratings)
+        resp = self.client.get('/rate/%s/-1/' % M.guid)
+        M = Module.objects.get(guid = M.guid)
+        self.assertEqual(5, M.average_rating)
+        self.assertEqual(2, M.number_of_ratings)
+        
     def test_home_displays_list(self):
         resp = self.client.get("/")
         self.assertTrue('top_rated_modules' in resp.context)

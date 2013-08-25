@@ -1,14 +1,33 @@
 {% extends "web/base_layout.html" %}
 
+{% load seamless_extras %}
+
+
 {% block content %}
-    <p>Title: {{ module.title }} </p>
-    <p>uniquename: {{ module.uniquename }} </p>
-    <p>Author: {{ module.author }} ({{ module.author }})</p>
-    <p>Name: {{ module.modulename }} </p>
-    <p>Description: {{ module.description }} </p>
-    <p>Sourcecode: {{ module.sourcecode }} </p>
-    <p>Documentation: {{ module.documentation }} </p>
-    <p>Tags:  </p>
-    <p>Version: {{ module.version }} </p>
-    <p>Rating: {{ module.average_rating }} ({{ module.number_of_ratings }} votes)
+<div class="module">
+    <p class="uniquename-description">Call this module name in your sourcecode to include this function:</p> 
+    <p class="uniquename"><span>{{ module.uniquename }} </span></p>
+    <p class="title">{{ module.title }} </p>
+    <p class="version">v{{ module.version }} </p>
+    <p class="author">by {{ module.author }}</p>
+    <p class="rating">Rating: <span class="rating">{{ module.average_rating|round_float }}</span> ({{ module.number_of_ratings }} votes) 
+    <span class="rate">Please make your rating: 
+      {% for i, rating_link in rating_links %} 
+          <a href="{{ rating_link }}" class="rate-{{ i }}">{{ i }}</a>
+      {% endfor %}
+    </span>
+    </p>
+    {% if not module.finished %}
+    <p class="notfinished">This module is not yet final.<br>
+       The owner can edit the sourcecode until he marks this module as finished.<br>
+       This module is not visible in search.</p>
+    {% endif %}
+    <p class="description">{{ module.description }} </p>
+    <p class="sourcecode-description">Sourcecode  </p>
+    <p class="modulename">Orginal modulename in sourcecode: {{ module.modulename }} </p>
+    <p class="sourcecode">{{ module.sourcecode }} </p>
+    <p class="documentation-description">Documentation </p>
+    <p class="documentation">{{ module.documentation }} </p>
+    <p class="tags">Tags:  </p>
+</div>
 {% endblock %}

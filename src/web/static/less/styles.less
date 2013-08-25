@@ -11,12 +11,17 @@
 @link-color: @brown;
 
 @font: Helvetica;
+@monofont: Courier;
 
 @rounding: 20px;
+
+@smallfontsize : 0.85em;
+
 
 body {
   font-family: @font;
   color: @white;
+  line-height: 1.2em;
 }
 
 .header {
@@ -41,11 +46,19 @@ body {
   width: 100%;
 }
 
+a {
+  text-decoration: none;  
+}
+
 div.content {
   .content-inner {
     padding: 40px;
     
-  }  
+  }
+    
+  a {
+  color: @link-color;  
+  }
   
   h1 {
     margin-top: 20px;
@@ -60,6 +73,80 @@ div.content {
     }     
   }  
   
+  p {
+    padding-top: 15px;  
+  }  
+  
+  div.module {
+    p.title { 
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: @brown;
+      display: inline;
+    }  
+    p.author { 
+      display: inline; 
+      font-size: @smallfontsize;
+      padding-left: 20px;
+    } 
+    p.version {
+      display: inline;  
+      font-size: @smallfontsize;
+      padding-left: 3px;      
+    }     
+    p.rating {
+      display: inline; 
+      padding-left: 20px;
+      font-size: @smallfontsize;  
+      span.rating {
+          font-weight: bold;   
+        color: @brown;
+      }          
+      span.rate {
+        padding-left: 20px;
+        }        
+    }     
+    p.notfinished {
+      font-weight: bold;  
+      
+    }    
+    p.uniquename-description {
+      font-size: @smallfontsize;  
+    }    
+    
+    p.modulename {
+      font-size: @smallfontsize;  
+      margin-left: 20px;
+    }    
+    p.uniquename {
+      text-align: center;
+      margin-bottom: 20px;    
+      span {
+        border: 2px solid @brown;
+        display: inline-block;      
+        font-size: 1.2em;
+        font-weight: bold;
+        color: @brown;
+        font-family: @monofont; 
+        padding: 5px;
+        .rounded(3px); 
+      } 
+    }
+    p.sourcecode-description, p.documentation-description {
+      font-weight: bold;  
+    }    
+    p.sourcecode {
+      margin: 20px;
+      padding: 10px 0;    
+      border-top: 1px solid @brown;
+      border-bottom: 1px solid @brown;
+      font-family: @monofont;  
+    }   
+    p.documentation {
+      margin: 20px;  
+    }     
+  }  
+  
   .border-radius(0, @rounding, @rounding, 0);
   border: 3px solid @green+#222;
   border-top: 0px;
@@ -68,9 +155,7 @@ div.content {
   width: 80%;
 }
 
-a {
-  color: @link-color;  
-}
+
 
 .add-module {
   position: absolute;

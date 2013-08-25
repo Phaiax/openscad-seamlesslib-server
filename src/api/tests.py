@@ -7,7 +7,7 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 from web.forms import ModuleForm
-from web.tests import example_module
+from web.tests.modulemodel import example_module
 from django.utils import simplejson
 from dateutil import parser
 
