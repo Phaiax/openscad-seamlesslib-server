@@ -1,0 +1,21 @@
+{% extends "web/base_layout.html" %}
+
+{% block content %}
+<form method="POST">
+<div class="module">
+  <p class="uniquename-description">Call this module name in your sourcecode to include this function:</p> 
+  <p class="uniquename"><span>{{ module.uniquename }} </span></p>
+  <p class="auth_code-description">Use this authentication code to edit this module. The auth-code is included in the url of this page, so you can simply copy the url of this page out of your browser.</p> 
+  <p class="auth_code">Auth code for edit: <span>{{ module.auth_code }} </span></p>
+</div>  
+
+<table class="moduleedit">
+{{ moduleform.as_table }}
+</table>
+{% csrf_token %}
+<p>Save if you want to test this Module. (<a href="{% url 'show' uuid=module.guid %}">Visit public page</a>)</p> 
+<input type="submit" name="savemodule" value="Save">
+<p>Finish this module to make it available to everyone. As long as you have not finished this module, no one will be able to search for it. You can't edit it anymore if you have finished it.</p>
+<input type="submit" name="finishmodule" value="Finish">
+</form>
+{% endblock %}

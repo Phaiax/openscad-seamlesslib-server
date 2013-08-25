@@ -2,7 +2,9 @@
 
 {% block content %}
 <form method="POST">
-{{ newmoduleform.as_p }}
+<table class="moduleedit">
+{{ newmoduleform.as_table }}
+</table>
 {% csrf_token %}
 <input type="submit" name="addmodule" value="Add">
 </form>

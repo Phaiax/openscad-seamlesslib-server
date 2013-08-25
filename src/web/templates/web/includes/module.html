@@ -1,0 +1,11 @@
+{% load seamless_extras %}
+<div class="module_item">
+  <div class="rating">{{ module.average_rating|round_float }}</div>
+  <div class="title"><a href="{{ module.get_absolute_url }}">{{ module.title }}</a></div>
+  <div class="uniquename">{{ module.uniquename }}</div>
+  <div class="description">
+    <h2><a href="{{ module.get_absolute_url }}">{{ module.title }}</a></h2>
+    <p>{{ module.description|linebreaks }}
+    </p> 
+  </div>
+</div>

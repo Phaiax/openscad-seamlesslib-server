@@ -1,0 +1,14 @@
+{% extends "web/base_layout.html" %}
+
+{% block content %}
+<form method="POST">
+{% csrf_token %}
+<p>Enter your authentication code to edit this module:</p>
+<input type="text" name="auth_code" maxlength="{{ module.auth_code|length }}" value="">
+<input type="submit" name="go to edit page" value="Go to edit page">
+<p>Trick: If you have created this module, you can search in the browser 
+history for the corresponding url which contains your authentication code.</p>
+<p>To do that, simply click on the adress bar at your browser and press the arrow-down 
+key once or twice. Your browser probably presents the correct url (containing /auth/abcde-.....-abde/ at the end).</p> 
+</form>
+{% endblock %}

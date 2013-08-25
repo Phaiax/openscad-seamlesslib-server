@@ -21,13 +21,14 @@
     <p class="notfinished">This module is not yet final.<br>
        The owner can edit the sourcecode until he marks this module as finished.<br>
        This module is not visible in search.</p>
+    <p> Go to the <a href="{% url 'edit_without_auth' uuid=module.guid %}">edit page</a> to finish this module </p>
     {% endif %}
-    <p class="description">{{ module.description }} </p>
+    <p class="description">{{ module.description|linebreaks }} </p>
     <p class="sourcecode-description">Sourcecode  </p>
     <p class="modulename">Orginal modulename in sourcecode: {{ module.modulename }} </p>
-    <p class="sourcecode">{{ module.sourcecode }} </p>
+    <div class="sourcecode"><code>{{ module.sourcecode }} </code></div>
     <p class="documentation-description">Documentation </p>
-    <p class="documentation">{{ module.documentation }} </p>
+    <p class="documentation">{{ module.documentation|linebreaks }} </p>
     <p class="tags">Tags:  </p>
 </div>
 {% endblock %}

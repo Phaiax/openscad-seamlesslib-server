@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from haystack import urls
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url(r'^$', 'web.views.home', name='home'),
     url(r'^add/$', 'web.views.add', name='add'),
     url(r'^show/(?P<uuid>[0-9a-f\-]+)/$', 'web.views.show', name='show'),
+    url(r'^edit/(?P<uuid>[0-9a-f\-]+)/auth/(?P<auth_code>[0-9a-f\-]+)/$', 'web.views.edit', name='edit'),
+    url(r'^edit/(?P<uuid>[0-9a-f\-]+)/$', 'web.views.edit_without_auth', name='edit_without_auth'),
     url(r'^rate/(?P<uuid>[0-9a-f\-]+)/(?P<rating>[0-9]{1,2})/$', 'web.views.rate', name='rate'),
     
     url(r'^api/get-by-uniquename/(?P<uniquename>[0-9a-z\-~A-Z]+)/$', 'api.views.get_by_uniquename', name='get_by_uniquename'),

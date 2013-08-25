@@ -18,4 +18,4 @@ class ModuleForm(ModelForm):
 
     class Meta:
         model = Module
-        fields = ['title', 'modulename', 'author', 'author_acronym', 'sourcecode', 'documentation', 'description']
+        fields = ['title', 'author', 'author_acronym', 'description', 'modulename', 'sourcecode', 'documentation']

@@ -15,7 +15,17 @@
         <h2><a href="/">Seamless embedding of online modules.</a></h2>
         {% endblock %}
         {% block header-additional %}
-        
+        <div class="widgets">
+          <span class="search">
+            <form method="GET" action="{% url 'haystack_search' %}">
+              <input type="text" name="q" placeholder="search ...">
+              <input type="submit" value="Search">
+            </form>            
+          </span>
+          <span class="add-module">
+            <a href="{% url 'add' %}"><span>Add new Module</span></a>
+          </span>
+        </div>
         {% endblock %}
       </div>
     </div>

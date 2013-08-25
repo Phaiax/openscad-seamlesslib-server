@@ -33,8 +33,10 @@ class PagesTest(TestCase):
         resp = self.client.post('/add/', example_module)
         M = Module.objects.get(modulename=example_module['modulename'])
         self.assertEquals(example_module['author'], M.author)
-        self.assertIn('show', resp['Location'])
+        self.assertIn('edit', resp['Location'])
         self.assertIn(M.guid, resp['Location'])
+        self.assertIn('auth', resp['Location'])
+        self.assertIn(M.auth_code, resp['Location'])
         self.assertIsInstance(resp, HttpResponseRedirect)
         
     def test_add_page_checks_for_valid_input(self):

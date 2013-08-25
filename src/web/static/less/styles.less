@@ -110,7 +110,7 @@ div.content {
       font-weight: bold;  
       
     }    
-    p.uniquename-description {
+    p.uniquename-description, p.auth_code-description {
       font-size: @smallfontsize;  
     }    
     
@@ -118,7 +118,7 @@ div.content {
       font-size: @smallfontsize;  
       margin-left: 20px;
     }    
-    p.uniquename {
+    p.uniquename, p.auth_code {
       text-align: center;
       margin-bottom: 20px;    
       span {
@@ -135,12 +135,17 @@ div.content {
     p.sourcecode-description, p.documentation-description {
       font-weight: bold;  
     }    
-    p.sourcecode {
+    div.sourcecode {
+      code {
+        white-space: pre-wrap;
+        font-family: @monofont;
+      }          
+        overflow: scroll;
+        max-height: 300px;
       margin: 20px;
       padding: 10px 0;    
       border-top: 1px solid @brown;
       border-bottom: 1px solid @brown;
-      font-family: @monofont;  
     }   
     p.documentation {
       margin: 20px;  
@@ -155,27 +160,138 @@ div.content {
   width: 80%;
 }
 
+ul.errorlist {
+  color: red; 
+  font-weight: bold; 
+}
 
-
-.add-module {
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  margin-top: -15px;
-  background-color: @green;
-  .rounded(4px);
-  padding: 1px;
-  display: inline-block;
-  a {
-    color: white;
-    .rounded(4px);  
-    display: inline-block;  
-    border: 2px solid @green - #111;
-    text-decoration: none;
-    font-weight: bold;
-    span {  
-    display: inline-block;
-      margin: 7px;
-    }
+table.moduleedit {
+  width: 100%;
+  
+  tr {
+    
   }  
+  
+  th {
+      vertical-align: top;
+      text-align: right;
+      padding-right: 20px;
+  }  
+  
+  td {
+    width: 70%;
+    
+    input#id_title, input#id_modulename {
+      width: 50%;  
+    }    
+    input#id_author_acronym {
+      width: 6em;  
+    }    
+    
+    textarea {
+      width: 90%;  
+    }
+    textarea#id_description, textarea#id_documentation {
+      font-family: @font;
+      height: 15em;  
+    }
+    textarea#id_sourcecode {
+      height: 20em;  
+    }        
+    span.helptext {
+      width: 90%;
+      display: block;  
+    }    
+  }    
+}
+
+div.module_item {
+  clear: both;
+  position: relative;
+  padding: 10px 0;
+  div.title {
+    display: inline;
+    float: left;
+    padding-left: 30px;
+    width: 40%;
+  }
+  div.rating {
+    display: inline;
+    float: left;
+    width: 2em;
+  }
+  div.uniquename {
+    display: inline;
+    float: left;    
+    padding-left: 30px;
+  }
+  div.description {
+    display: none;
+    clear: both;
+    background-color: @green + #111;
+    border: 2px solid @green - #222;
+    z-index: 10;
+    padding: 20px;
+    h2 {
+      font-size: 1.3em;
+    }
+    p {
+      
+    }        
+  }          
+  &:hover div.description {
+    display: block;
+    position: absolute;
+    top: 1.8em;
+    left: 30%;
+  }
+}
+
+div.header {
+  div.widgets {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    margin-top: -15px;
+    
+    .search {
+      background-color: @green;
+      .rounded(4px);
+      padding: 1px;
+      margin-right: 10px;
+      display: inline-block;
+      a {
+        color: white;
+        .rounded(4px);  
+        display: inline-block;  
+        border: 2px solid @green - #111;
+        text-decoration: none;
+        font-weight: bold;
+        span {  
+        display: inline-block;
+          margin: 7px;
+        }
+      }  
+    }
+    
+    .add-module {
+      margin-top: -15px;
+      background-color: @green;
+      .rounded(4px);
+      padding: 1px;
+      display: inline-block;
+      a {
+        color: white;
+        .rounded(4px);  
+        display: inline-block;  
+        border: 2px solid @green - #111;
+        text-decoration: none;
+        font-weight: bold;
+        span {  
+        display: inline-block;
+          margin: 7px;
+        }
+      }  
+    }
+  }
 }

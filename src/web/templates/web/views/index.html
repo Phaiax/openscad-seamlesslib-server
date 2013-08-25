@@ -1,17 +1,13 @@
 {% extends "web/base_layout.html" %}
 
-{% block header-additional %}
-  <span class="add-module">
-    <a href="/add/"><span>Add new Module</span></a>
-  </span>
-{% endblock %}
+
 {% block content %}
   
     <h1>Lastest entries</h1>
     <ul>
       {% for m in last_added_modules %}
         <li>
-          <div><a href="{{ m.get_absolute_url }}">{{ m.title }} __</a> </div>
+          {% include "web/includes/module.html" with module=m %}
         </li>
       {% endfor %}
     </ul>
@@ -20,7 +16,7 @@
     <ul>
       {% for m in top_rated_modules %}
         <li>
-          <div><a href="{{ m.get_absolute_url }}">{{ m.title }}_</a> !</div>
+          {% include "web/includes/module.html" with module=m %}
         </li>
       {% endfor %}
     </ul>
