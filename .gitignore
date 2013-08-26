@@ -1,6 +1,8 @@
 venv
 src/database.sql3
 src/seamless/xapian_index
+src/seamless/settings_server.py
+src/seamless/settings_server_example.py
 
 *.py[cod]
 

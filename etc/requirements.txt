@@ -5,4 +5,4 @@ mock
 South
 python-dateutil
 django-haystack
-xapian-haystack
+
