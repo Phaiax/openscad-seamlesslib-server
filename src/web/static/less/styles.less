@@ -50,6 +50,10 @@ a {
   text-decoration: none;  
 }
 
+strong {
+  font-weight: bold;  
+}
+
 div.content {
   .content-inner {
     padding: 40px;
@@ -64,17 +68,21 @@ div.content {
     margin-top: 20px;
     margin-bottom: 5px;
     font-size: 1.3em;
+    text-decoration: underline;
   }  
   
   ul {
     margin-left: 20px; 
     li {
-      padding: 1px;  
+      padding: 1px;
+      margin-left: 20px; 
+      list-style-type: circle; 
     }     
   }  
   
   p {
     padding-top: 15px;  
+    padding-left: 20px;
   }  
   
   div.module {
@@ -203,6 +211,27 @@ table.moduleedit {
       display: block;  
     }    
   }    
+}
+
+div.sketch {
+  margin: 0 auto;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  
+  &:hover img {
+    width: 588px;
+    position: absolute;
+    left: -588px/2;
+    z-index: 40;
+  }    
+  img {
+     margin: 2px;
+     border: 2px solid black;  
+     text-align: center;  
+     width: 150px;
+     .rounded(5px);
+  }  
 }
 
 div.module_item {

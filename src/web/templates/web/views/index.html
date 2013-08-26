@@ -3,21 +3,64 @@
 
 {% block content %}
   
-    <h1>Lastest entries</h1>
+    <h1>What is Seamless for OpenSCAD?</h1>
+    <p>The Seamless compiler can import <a href="http://www.OpenSCAD.org/">OpenSCAD</a> <a href="http://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Modules">modules</a> directly 
+    from a online module library. It works as a precompiler.</p>
+    <p>Example: If you want to design a wall mount for your arduino, you may need to measure the 
+    positions of the mounting holes of your arduino. It's far easier if you search for a module that can
+    create those holes for you, and just call ~px-arduino_mega_with_sainsmart_lcd-v1(only_make_bores = true);
+    </p>
+    <div class="sketch"><img src="{{ STATIC_URL }}img/principle_sketch.png" alt=""></div>
+    
+    <h1>How can i use it?</h1>
+    <p><a href="">Download the seamless compiler for Windows</a> or <a href="">Linux</a> and install it. Start it.</p>
+    <p>The compiler (also known as client) simply watches a whole directory including subfolders for changes. 
+    Whenever you edit or create a .scad file, the compiler instantly compiles it into a .compiled.scad file.</p>
+    <p>Choose a directory and click "Start"</p>
+    <p>Depending on your habbits, you may have to adapt a new habbit: 
+    <strong>You can not use the built-in OpenSCAD text editor anymore</strong>.
+    </p> 
+    <p>You have to use an external editor. I recommend <a href="http://notepad-plus-plus.org/">Notepad++</a> for
+    Windows and gedit or kate for Linux. Create and edit your my_new_design.scad file in your favorite editor.
+    </p>
+    <p>
+      Open OpenSCAD. Load the my_new_design.compiled.scad file into OpenSCAD. You can hide the built-in editor in OpenSCAD
+      via Menu->View->Hide editor. You also need to enable Menu->Design->'Automatic reload and compile'.
+    </p>
+    <p>
+      Now you can edit your design. Whenever you save your file (Ctrl + S) it precompiles (searches for online modules)
+       and compiles automatically.
+    </p>
+    <h1>Known Issues</h1>
+    <p>This project is very young. Some things are planned but not yet implemented</p>
     <ul>
-      {% for m in last_added_modules %}
-        <li>
-          {% include "web/includes/module.html" with module=m %}
-        </li>
-      {% endfor %}
+      <li>Tagging</li>
+      <li>Handling of includes</li>
+      <li>Calling online modules from online modules</li>
+      <li>Searching for more than one word</li>
+      <li>Design (It's horrible currently)</li>
+      <li>Creating new versions</li>
+      <li>Ajax for smarter navigation and search</li>
+      <li>Remove need for javascript: currently it's used for less.js, a clientside css compiler</li>
+      <li>Functions, not only modules, but thats a only a regex thing</li>
+      <li>English grammar and vocabulary :D Sorry</li>
     </ul>
+    <h1>How can I contribute</h1>
+    <p>If you find bugs, you can <a href="https://github.com/Phaiax/openscad-seamlesslib-server/issues">create an issue</a> in the bugtracker.
+    </p>
+    <p>This software licensed under GPL version 2.</p>
+    <p> You can contribute to the <a href="https://github.com/Phaiax/openscad-seamlesslib-server">server sourcecode</a> or <a href="https://github.com/Phaiax/openscad-seamlesslib-client">client sourcecode</a>. I tried to develop all businesscode test first. You too?</p>
+    <p>HTML and CSS? Do you want to make a completely new design for this page?</p>
+    <p>If you have problems, i may help you. But first refer to the <a href="https://github.com/Phaiax/openscad-seamlesslib-server/blob/master/README.md">README.md</a></p>
+    <p>My Email and Jabber address is: phaiax@invisibletower.de. (<a href="http://gpg.invisibletower.de/gpg_phaiax_pub_key.pub">Public Key</a>, Fingerprint: 539B CD82 4A11 59F7 4E7F  87E8 F08A AA6C F9BF 59B1)</p>
+           
+    <h1>Lastest entries</h1>
+      {% for m in last_added_modules %}
+        {% include "web/includes/module.html" with module=m %}
+      {% endfor %}
     
     <h1>Top rated entries</h1>
-    <ul>
       {% for m in top_rated_modules %}
-        <li>
-          {% include "web/includes/module.html" with module=m %}
-        </li>
+        {% include "web/includes/module.html" with module=m %}
       {% endfor %}
-    </ul>
 {% endblock %}

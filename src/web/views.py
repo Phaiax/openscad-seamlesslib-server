@@ -12,8 +12,8 @@ def get_redirect_to_edit_page(module):
                 kwargs={ 'uuid' : module.guid.__str__(),
                          'auth_code' : module.auth_code.__str__()})) 
 def home(request):
-    top_rated_modules = Module.objects.order_by('-average_rating')[0:10]
-    last_added_modules = Module.objects.order_by('-created')[0:10]
+    top_rated_modules = Module.objects.filter(finished=True).order_by('-average_rating')[0:10]
+    last_added_modules = Module.objects.filter(finished=True).order_by('-created')[0:10]
     return render(request, 'web/views/index.html', {'top_rated_modules' : top_rated_modules,
                                                     'last_added_modules' : last_added_modules})
 

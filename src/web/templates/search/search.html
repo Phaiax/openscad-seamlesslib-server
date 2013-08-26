@@ -5,9 +5,7 @@
 
     {% if query %}
         {% for result in page.object_list %}
-            <p>
-                {% include "web/includes/module.html" with module=result.object %}
-            </p>
+            {% include "web/includes/module.html" with module=result.object %}
         {% empty %}
             <p>No results found.</p>
         {% endfor %}

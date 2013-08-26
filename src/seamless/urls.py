@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^edit/(?P<uuid>[0-9a-f\-]+)/$', 'web.views.edit_without_auth', name='edit_without_auth'),
     url(r'^rate/(?P<uuid>[0-9a-f\-]+)/(?P<rating>[0-9]{1,2})/$', 'web.views.rate', name='rate'),
     
-    url(r'^api/get-by-uniquename/(?P<uniquename>[0-9a-z\-~A-Z]+)/$', 'api.views.get_by_uniquename', name='get_by_uniquename'),
+    url(r'^api/get-by-uniquename/(?P<uniquename>[0-9a-z\-~A-Z_]+)/$', 'api.views.get_by_uniquename', name='get_by_uniquename'),
     
     # url(r'^seamless/', include('seamless.foo.urls')),
 
