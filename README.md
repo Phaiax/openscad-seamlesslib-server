@@ -5,15 +5,15 @@ Web interface to create and API to recieve modules online
 
 
 
-# Installation for Development
+## Installation for Development
 
-## Prerequesites
+### Prerequesites
 
  * Install virtualenv:
   + `# apt-get install python-setuptools`
   + `# easy_install virtualenv`
 
-## Create Virualenv
+### Create Virualenv
  * Ubuntu users take care of: (https://bugs.launchpad.net/ubuntu/+source/python2.7/+bug/1115466)
   + `sudo ln -s plat-x86_64-linux-gnu/_sysconfigdata_nd.py /usr/lib/python2.7`
  * `cd` to the root directory of this repository
@@ -21,7 +21,7 @@ Web interface to create and API to recieve modules online
  * execute `install-xapian-into-virtual-environment.sh`
  
  
-## Start Django Development server or use manage.py
+### Start Django Development server or use manage.py
  * You should not simply start manage.py by itself, because then you do not use the virtual environment. Instead you have to this:
   + type: `source venv/bin/acticate` to bind the virtual environment to your current shell. 
   + Then you can type ./manage.py commands.
@@ -32,13 +32,13 @@ Web interface to create and API to recieve modules online
   + `./manage.py migrate`
     
   
-## Develop (start development server)
+### Develop (start development server)
  * `source venv/bin/activate`
  * `./start-development-server.sh`
  * `./tests.sh web` or `./tests.sh api`
  * look into these files to see how ./manage.py is called
   
-# Installation on a web server (For public operation, no development)
+## Installation on a web server (For public operation, no development)
 
 ### Get Code
  * clone this repository into a path, not accessible via web
@@ -75,7 +75,7 @@ Web interface to create and API to recieve modules online
   * Open the web application with your browser. It should work (without static files yet)
    * If not, refer to your server log, set Debug=True temporarily in your settings_server.py or take a look at the fcgi-out.log file
 
-#### Server static files
+#### Serve static files
   * create the /static/ folder in your webroot directory (maybe /html/)  (That directory you had set STATIC_ROOT in settings_server.py to)
    * `./manage.py collectstatic --settings=seamless.settings_server`
    * now some files should have been copied into the /static folder
@@ -89,7 +89,7 @@ Web interface to create and API to recieve modules online
    * Set a cron job to update your search index periodically
     * `source /home/MMMMMMMMMMMMM/openscad-seamlesslib-server/venv/bin/activate && /home/MMMMMMMMMMMMM/openscad-seamlesslib-server/src/manage.py update_index --settings=seamless.settings_server && deactivate`
 
-### Howto kill the server (for restart after update or config changes)
+#### Howto kill the server (for restart after update or config changes)
   * If your want to restart the server (after update or config change), try
    * `killall <fcgi-script-name>`
    * execute this until you get the message: No process found
