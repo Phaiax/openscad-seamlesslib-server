@@ -1,0 +1,27 @@
+#!/home/MMMMMMMMMMMMMMMMMMM/openscad-seamlesslib-server/venv/bin/python
+
+import sys, os
+
+# You can uncomment these two lines if you want
+sys.stdout=open('/home/MMMMMMMMMMMMMMMMMMMM/fcgi-out.log','a')
+sys.stderr=sys.stdout
+
+
+# Not necessarily /home, other directories will work fine
+os.environ['HOME'] = '/home/MMMMMMMMMMMMMMMMMMMMMMMMMMM'
+os.environ['PATH'] = '/home/MMMMMMMMMMMMMMMMMMMMMMMMMMM/openscad-seamlesslib-server/venv/bin:' + os.environ['PATH']
+os.environ['VIRTUAL_ENV'] = '/home/MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM/openscad-seamlesslib-server/venv'
+os.environ['PYTHON_EGG_CACHE'] = '/home/MMMMMMMMMMMMMMMMMMMMMMMMM/openscad-seamlesslib-server/venv/egg_cache'
+
+
+# Add a custom Python path.
+sys.path.insert(0, "/home/MMMMMMMMMMMMMMMMMMMMMMMMMM/openscad-seamlesslib-server/src")
+
+# Switch to the directory of your project.
+os.chdir("/home/MMMMMMMMMMMMMMMMMMMMMMMMM/openscad-seamlesslib-server/src")
+
+# Set the DJANGO_SETTINGS_MODULE environment variable.
+os.environ['DJANGO_SETTINGS_MODULE'] = "seamless.settings_server_example" # MMMMMMMMMMMMMMMMMMMMMMMMMM adjust your settings module name 
+
+from django.core.servers.fastcgi import runfastcgi
+runfastcgi(method="threaded", daemonize="false")

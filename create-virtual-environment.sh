@@ -13,5 +13,6 @@ if [ -d venv ]; then
 else
     virtualenv --no-site-packages venv
 fi
+. venv/bin/activate
 ./venv/bin/pip install -r etc/requirements.txt --upgrade
 
