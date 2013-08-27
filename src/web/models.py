@@ -20,7 +20,7 @@ class Module(models.Model):
     created = models.DateTimeField(db_index=True, auto_now_add = True)
     finished = models.BooleanField(default = False)
     sourcecode = models.TextField(help_text="""
-        <strong>Commiting this sourcecode you irrevocably agree to release your contribution under the CC-BY-SA 3.0 License and the GPLv2.</strong>
+        <strong>By commiting this sourcecode you irrevocably agree to release your contribution under the CC-BY-SA 3.0 License and the GPLv2.</strong>
         <p>
         Some tips to make a good and reusable module:
         <ul><li>Don't use global variables! They can cause confusion if they override variables used in the calling script.</li>
