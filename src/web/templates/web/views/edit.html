@@ -3,6 +3,7 @@
 {% block content %}
 <form method="POST">
 <div class="module">
+  <p class=""><strong>This module is not visible in public yet. You need to finish it (button at the bottom).</strong></p>
   <p class="uniquename-description">Call this module name in your sourcecode to include this function:</p> 
   <p class="uniquename"><span>{{ module.uniquename }} </span></p>
   <p class="auth_code-description">Use this authentication code to edit this module. The auth-code is included in the url of this page, so you can simply copy the url of this page out of your browser.</p> 
@@ -15,7 +16,9 @@
 {% csrf_token %}
 <p>Save if you want to test this Module. (<a href="{% url 'show' uuid=module.guid %}">Visit public page</a>)</p> 
 <input type="submit" name="savemodule" value="Save">
-<p>Finish this module to make it available to everyone. As long as you have not finished this module, no one will be able to search for it. You can't edit it anymore if you have finished it.</p>
+<p>Finish this module to make it available to everyone. As long as you have not finished this module, no one will be able to search for it. You can't edit it anymore if you have finished it. After finishing, the search index needs 5-10 minutes to catch the new module.</p>
 <input type="submit" name="finishmodule" value="Finish">
+<p><strong>By clicking the "Save" or "Finish" button you irrevocably agree to release your contribution under the CC-BY-SA 3.0 License and the GPLv2.</strong></p>
+
 </form>
 {% endblock %}
