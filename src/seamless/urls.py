@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^rate/(?P<uuid>[0-9a-f\-]+)/(?P<rating>[0-9]{1,2})/$', 'web.views.rate', name='rate'),
     
     url(r'^api/get-by-uniquename/(?P<uniquename>[0-9a-z\-~A-Z_]+)/$', 'api.views.get_by_uniquename', name='get_by_uniquename'),
+    url(r'^api/version-info', 'api.views.version_info', name="version_info"),
     
     # url(r'^seamless/', include('seamless.foo.urls')),
 

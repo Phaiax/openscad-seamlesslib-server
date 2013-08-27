@@ -36,3 +36,10 @@ class SimpleTest(TestCase):
         resp = self.client.get('/api/get-by-uniquename/abc/')
         self.assertEqual(resp.status_code, 404)
         
+    def test_api_delivers_version_info(self):
+        resp = self.client.get('/api/version-info/')
+        json = simplejson.loads(resp.content, encoding="UTF-8")
+        self.assertEqual(json['server_version'], 2)
+        self.assertEqual(json['min_supported_client'], 2)
+        self.assertEqual(json['most_recent_client_version'], 2)
+        

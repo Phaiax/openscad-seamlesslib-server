@@ -9,9 +9,14 @@ Web interface to create and API to recieve modules online
 
 ### Prerequesites
 
- * Install virtualenv:
-  + `# apt-get install python-setuptools`
-  + `# easy_install virtualenv`
+ * Install virtualenv (examples for debian based systems):
+  + `sudo apt-get install python-setuptools`
+  + `sudo easy_install virtualenv`
+ * install mysql (even if in development mode, or temporarily remove the mysql dependency from requirements.txt)
+  + `sudo apt-get install libmysqlclient-dev`
+  + `sudo apt-get install python-dev`
+  + `sudo apt-get install uuid-dev # or libuuid-devel `
+  + `sudo apt-get install build-essential`
 
 ### Create Virualenv
  * Ubuntu users take care of: (https://bugs.launchpad.net/ubuntu/+source/python2.7/+bug/1115466)
@@ -19,6 +24,8 @@ Web interface to create and API to recieve modules online
  * `cd` to the root directory of this repository
  * execute `create-virtual-environment.sh`
  * execute `install-xapian-into-virtual-environment.sh`
+  * Watch out for errors while all these 'check for' messages appear.
+  * You may need to install additional development libraries 
  
  
 ### Start Django Development server or use manage.py
@@ -34,7 +41,7 @@ Web interface to create and API to recieve modules online
   
 ### Develop (start development server)
  * `source venv/bin/activate`
- * `./start-development-server.sh`
+ * `./development-server.sh`
  * `./tests.sh web` or `./tests.sh api`
  * look into these files to see how ./manage.py is called
   
